@@ -2,7 +2,9 @@
 
 namespace App\Command;
 
+use App\Database\TaskManager;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,6 +17,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ListCommand extends Command
 {
 
+    /**
+     * @var TaskManager
+     */
+    private $taskManager;
+
+    /**
+     * ListCommand constructor.
+     *
+     * @param TaskManager $taskManager
+     * @param null        $name
+     */
+    public function __construct(TaskManager $taskManager, $name = null)
+    {
+        parent::__construct($name);
+
+        $this->taskManager = $taskManager;
+    }
+
     public function configure()
     {
         $this
@@ -26,7 +46,14 @@ class ListCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        // TODO implement listing tasks feature
+        $tasks = $this->taskManager->list();
+
+        $table = new Table($output);
+        $table
+            ->setHeaders(['ID', 'Name', 'Group', 'Done'])
+            ->setRows($tasks);
+
+        $table->render();
     }
 
 }

@@ -9,9 +9,25 @@ use Symfony\Component\Console\Application;
 
 $application = new Application('Todo Commands Application', '1.0');
 
+// connection to database
+try
+{
+    $pdo = new PDO('sqlite:tasks.sqlite');
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (Exception $exception)
+{
+    echo 'Could not connect to the database';
+    exit(1);
+}
+$adapter = new \App\Database\DatabaseAdaptor($pdo);
+$taskManager = new \App\Database\TaskManager($adapter);
+
 // task CRUD commands
-$application->add(new \App\Command\AddCommand());
-$application->add(new \App\Command\ListCommand());
+$application->add(new \App\Command\AddCommand($taskManager));
+$application->add(new \App\Command\ListCommand($taskManager));
+$application->add(new \App\Command\DoneCommand($taskManager));
 $application->add(new \App\Command\UpdateCommand());
 $application->add(new \App\Command\RemoveCommand());
 
