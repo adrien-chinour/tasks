@@ -30,7 +30,7 @@ class DatabaseAdaptor
      * @param $sql
      * @param $parameters
      *
-     * @return bool
+     * @return array
      */
     public function query($sql, $parameters)
     {

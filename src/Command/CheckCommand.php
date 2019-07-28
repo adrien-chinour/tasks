@@ -9,12 +9,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class CheckCommand : check or uncheck task
+ *
+ * @package App\Command
+ */
 class CheckCommand extends Command
 {
 
-    /**
-     * @var TaskManager $taskManager
-     */
     private $taskManager;
 
     public function __construct(TaskManager $taskManager, $name = null)

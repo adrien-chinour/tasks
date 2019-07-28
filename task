@@ -25,7 +25,6 @@ $taskManager = new \App\Database\TaskManager($adapter);
 $application->add(new \App\Command\AddCommand($taskManager));
 $application->add(new \App\Command\ListCommand($taskManager));
 $application->add(new \App\Command\CheckCommand($taskManager));
-$application->add(new \App\Command\UpdateCommand());
 $application->add(new \App\Command\RemoveCommand($taskManager));
 
 $application->run();

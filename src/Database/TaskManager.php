@@ -3,6 +3,11 @@
 
 namespace App\Database;
 
+/**
+ * Class TaskManager
+ *
+ * @package App\Database
+ */
 class TaskManager
 {
 
@@ -23,7 +28,7 @@ class TaskManager
      * @param string $name
      * @param string $group
      *
-     * @return mixed
+     * @return array
      */
     public function add(string $name, string $group)
     {
@@ -36,7 +41,7 @@ class TaskManager
     /**
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function check(int $id)
     {
@@ -46,7 +51,7 @@ class TaskManager
     /**
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function uncheck(int $id)
     {
@@ -56,7 +61,7 @@ class TaskManager
     /**
      * @param string|null $group
      *
-     * @return mixed
+     * @return array
      */
     public function list(string $group = null)
     {
@@ -73,7 +78,7 @@ class TaskManager
     /**
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function remove(int $id)
     {

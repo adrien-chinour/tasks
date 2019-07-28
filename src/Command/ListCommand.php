@@ -17,17 +17,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ListCommand extends Command
 {
 
-    /**
-     * @var TaskManager
-     */
     private $taskManager;
 
-    /**
-     * ListCommand constructor.
-     *
-     * @param TaskManager $taskManager
-     * @param null        $name
-     */
     public function __construct(TaskManager $taskManager, $name = null)
     {
         parent::__construct($name);
@@ -48,7 +39,7 @@ class ListCommand extends Command
     {
         $tasks = $this->taskManager->list($input->getOption('group'));
 
-        if(empty($tasks)) {
+        if (empty($tasks)) {
             $output->writeln('<info>no task found.</info>');
             exit(0);
         }

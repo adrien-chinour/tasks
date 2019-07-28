@@ -17,9 +17,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AddCommand extends Command
 {
 
-    /**
-     * @var TaskManager
-     */
     private $taskManager;
 
     public function __construct(TaskManager $taskManager, $name = null)
