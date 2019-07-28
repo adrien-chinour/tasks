@@ -46,7 +46,12 @@ class ListCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $tasks = $this->taskManager->list();
+        $tasks = $this->taskManager->list($input->getOption('group'));
+
+        if(empty($tasks)) {
+            $output->writeln('<info>no task found.</info>');
+            exit(0);
+        }
 
         $table = new Table($output);
         $table

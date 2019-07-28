@@ -54,11 +54,30 @@ class TaskManager
     }
 
     /**
+     * @param string|null $group
+     *
      * @return mixed
      */
-    public function list()
+    public function list(string $group = null)
     {
-        return $this->adaptor->query('select * from tasks', []);
+        if ($group !== null) {
+            return $this->adaptor->query(
+                'select * from tasks where "group" = :group',
+                [':group' => $group]
+            );
+        } else {
+            return $this->adaptor->query('select * from tasks', []);
+        }
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function remove(int $id)
+    {
+        return $this->adaptor->query('delete from tasks where id = :id', ['id' => $id]);
     }
 
 }

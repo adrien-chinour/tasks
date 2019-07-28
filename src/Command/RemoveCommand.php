@@ -4,6 +4,7 @@
 namespace App\Command;
 
 
+use App\Database\TaskManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,6 +12,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RemoveCommand extends Command
 {
+
+    /**
+     * @var TaskManager $taskManager
+     */
+    private $taskManager;
+
+    public function __construct(TaskManager $taskManager, $name = null)
+    {
+        parent::__construct($name);
+
+        $this->taskManager = $taskManager;
+    }
 
     protected function configure()
     {
@@ -23,7 +36,11 @@ class RemoveCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // TODO implement remove task feature
+        foreach ($input->getArgument('task') as $id) {
+            $this->taskManager->remove($id);
+        }
+
+        $output->writeln('<info>Task(s) removed.</info>');
     }
 
 

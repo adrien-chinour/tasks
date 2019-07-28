@@ -25,18 +25,6 @@ class DatabaseAdaptor
     }
 
     /**
-     * Fetch all rows from a table.
-     *
-     * @param $tableName
-     *
-     * @return array
-     */
-    public function fetchAll($tableName)
-    {
-        return $this->connection->query('select * from ' . $tableName)->fetchAll();
-    }
-
-    /**
      * Perform a generic database query.
      *
      * @param $sql

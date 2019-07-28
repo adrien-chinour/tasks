@@ -3,21 +3,18 @@
 
 set_time_limit(0);
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 
 $application = new Application('Todo Commands Application', '1.0');
 
 // connection to database
-try
-{
+try {
     $pdo = new PDO('sqlite:tasks.sqlite');
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (Exception $exception)
-{
+} catch (Exception $exception) {
     echo 'Could not connect to the database';
     exit(1);
 }
@@ -27,8 +24,8 @@ $taskManager = new \App\Database\TaskManager($adapter);
 // task CRUD commands
 $application->add(new \App\Command\AddCommand($taskManager));
 $application->add(new \App\Command\ListCommand($taskManager));
-$application->add(new \App\Command\DoneCommand($taskManager));
+$application->add(new \App\Command\CheckCommand($taskManager));
 $application->add(new \App\Command\UpdateCommand());
-$application->add(new \App\Command\RemoveCommand());
+$application->add(new \App\Command\RemoveCommand($taskManager));
 
 $application->run();
