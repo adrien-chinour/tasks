@@ -33,8 +33,8 @@ class TaskRepository
     public function add(string $name, string $group)
     {
         return $this->adaptor->query(
-            "insert into tasks('name','group','done') values (:name, :group, :done)",
-            [':name' => $name, ':group' => $group, ':done' => 0]
+            "insert into tasks('name','group','completed') values (:name, :group, :completed)",
+            [':name' => $name, ':group' => $group, ':completed' => 0]
         );
     }
 
@@ -45,7 +45,7 @@ class TaskRepository
      */
     public function check(int $id)
     {
-        return $this->adaptor->query('update tasks set done = 1 where id = :id', ['id' => $id]);
+        return $this->adaptor->query('update tasks set completed = 1 where id = :id', [':id' => $id]);
     }
 
     /**
@@ -55,7 +55,7 @@ class TaskRepository
      */
     public function uncheck(int $id)
     {
-        return $this->adaptor->query('update tasks set done = 0 where id = :id', ['id' => $id]);
+        return $this->adaptor->query('update tasks set completed = 0 where id = :id', [':id' => $id]);
     }
 
     /**

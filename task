@@ -11,20 +11,30 @@ $application = new Application('Todo Commands Application', '1.0');
 
 // connection to database
 try {
+    $sqlite = __DIR__ . '/tasks.sqlite';
+    $table = null;
+
+    if (!file_exists($sqlite)) {
+        $table = 'CREATE TABLE tasks(id INTEGER PRIMARY KEY NOT NULL, description TEXT, "group" TEXT, completed BOOLEAN)';
+    }
+
     $pdo = new PDO('sqlite:tasks.sqlite');
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if ($table !== null) {
+        $pdo->prepare($table)->execute();
+    }
 } catch (Exception $exception) {
     echo 'Could not connect to the database';
     exit(1);
 }
 $adapter = new \App\Database\DatabaseAdaptor($pdo);
-$taskManager = new \App\Database\TaskRepository($adapter);
+$taskRepository = new \App\Database\TaskRepository($adapter);
 
 // task CRUD commands
-$application->add(new \App\Command\AddCommand($taskManager));
-$application->add(new \App\Command\ListCommand($taskManager));
-$application->add(new \App\Command\CheckCommand($taskManager));
-$application->add(new \App\Command\RemoveCommand($taskManager));
+$application->add(new \App\Command\AddCommand($taskRepository));
+$application->add(new \App\Command\ListCommand($taskRepository));
+$application->add(new \App\Command\CheckCommand($taskRepository));
+$application->add(new \App\Command\RemoveCommand($taskRepository));
 
 $application->run();

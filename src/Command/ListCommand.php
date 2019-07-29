@@ -50,7 +50,7 @@ class ListCommand extends Command
     {
         $table = new Table($output);
         $table
-            ->setHeaders(['ID', 'Name', 'Group', 'Done'])
+            ->setHeaders(['ID', 'Name', 'Group', 'Completed'])
             ->setRows($tasks);
 
         $table->render();
