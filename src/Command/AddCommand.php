@@ -32,7 +32,7 @@ class AddCommand extends Command
             ->setAliases(['a'])
             ->setDescription('Add a new task')
             ->addArgument('name', InputArgument::REQUIRED, 'Name of the task to add')
-            ->addOption('group', 'g', InputOption::VALUE_REQUIRED, 'Add a group to your task');
+            ->addOption('group', 'g', InputOption::VALUE_REQUIRED, 'Add a group to your task', '');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
