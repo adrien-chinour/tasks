@@ -8,7 +8,7 @@ namespace App\Database;
  *
  * @package App\Database
  */
-class TaskManager
+class TaskRepository
 {
 
     /** @var DatabaseAdaptor */

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Database\TaskManager;
+use App\Database\TaskRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,13 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AddCommand extends Command
 {
 
-    private $taskManager;
+    private $repository;
 
-    public function __construct(TaskManager $taskManager, $name = null)
+    public function __construct(TaskRepository $repository, $name = null)
     {
         parent::__construct($name);
-
-        $this->taskManager = $taskManager;
+        $this->repository = $repository;
     }
 
     protected function configure()
@@ -41,7 +40,7 @@ class AddCommand extends Command
         $name = $input->getArgument('name');
         $group = $input->getOption('group');
 
-        $this->taskManager->add($name, $group);
+        $this->repository->add($name, $group);
         $output->writeln("<info>Task correctly added.</info>");
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Database\TaskManager;
+use App\Database\TaskRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,13 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CheckCommand extends Command
 {
 
-    private $taskManager;
+    private $repository;
 
-    public function __construct(TaskManager $taskManager, $name = null)
+    public function __construct(TaskRepository $repository, $name = null)
     {
         parent::__construct($name);
-
-        $this->taskManager = $taskManager;
+        $this->repository = $repository;
     }
 
     protected function configure()
@@ -38,12 +37,12 @@ class CheckCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('uncheck')) {
-            $this->taskManager->uncheck($input->getArgument('task'));
+            $this->repository->uncheck($input->getArgument('task'));
             $output->writeln('<info>Task unchecked.</info>');
-        } else {
-            $this->taskManager->check($input->getArgument('task'));
-            $output->writeln('<info>Task checked</info>');
         }
+
+        $this->repository->check($input->getArgument('task'));
+        $output->writeln('<info>Task checked</info>');
     }
 
 }
