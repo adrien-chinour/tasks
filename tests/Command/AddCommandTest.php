@@ -3,13 +3,8 @@
 namespace Tests\Command;
 
 use App\Command\AddCommand;
-use App\Database\TaskRepository;
-use PHPUnit\Framework\MockObject\MockObject;
-use \PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Tester\CommandTester;
 
-class AddCommandTest extends TestCase
+class AddCommandTest extends AbstractCommandTest
 {
 
     /**
@@ -17,30 +12,9 @@ class AddCommandTest extends TestCase
      */
     const NUMBER_OF_TASKS = 20;
 
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    protected $commandName = 'add';
 
-    /**
-     * @var MockObject|TaskRepository
-     */
-    private $taskRepositoryMock;
-
-    /**
-     * Setup application before each test
-     */
-    protected function setUp()
-    {
-        $this->taskRepositoryMock = $this->getMockBuilder(TaskRepository::class)
-                                         ->disableOriginalConstructor()
-                                         ->getMock();
-
-        $application = new Application();
-        $application->add(new AddCommand($this->taskRepositoryMock));
-        $command = $application->find('add');
-        $this->commandTester = new CommandTester($command);
-    }
+    protected $commandClass = AddCommand::class;
 
     /**
      * @dataProvider tasksWithoutGroupProvider
@@ -81,15 +55,6 @@ class AddCommandTest extends TestCase
             'Task correctly added.',
             trim($this->commandTester->getDisplay())
         );
-    }
-
-    /**
-     * Clean up after running a test
-     */
-    protected function tearDown()
-    {
-        $this->taskRepositoryMock = null;
-        $this->commandTester = null;
     }
 
     /**
