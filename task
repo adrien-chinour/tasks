@@ -5,6 +5,12 @@ set_time_limit(0);
 
 require __DIR__ . '/vendor/autoload.php';
 
+use App\Command\AddCommand;
+use App\Command\CheckCommand;
+use App\Command\ListCommand;
+use App\Command\RemoveCommand;
+use App\Database\DatabaseAdaptor;
+use App\Database\TaskRepository;
 use Symfony\Component\Console\Application;
 
 $application = new Application('Todo Commands Application', '1.0');
@@ -25,16 +31,16 @@ try {
         $pdo->prepare($table)->execute();
     }
 } catch (Exception $exception) {
-    echo 'Could not connect to the database';
+    echo $exception->getMessage();
     exit(1);
 }
-$adapter = new \App\Database\DatabaseAdaptor($pdo);
-$taskRepository = new \App\Database\TaskRepository($adapter);
+$adapter = new DatabaseAdaptor($pdo);
+$taskRepository = new TaskRepository($adapter);
 
 // task CRUD commands
-$application->add(new \App\Command\AddCommand($taskRepository));
-$application->add(new \App\Command\ListCommand($taskRepository));
-$application->add(new \App\Command\CheckCommand($taskRepository));
-$application->add(new \App\Command\RemoveCommand($taskRepository));
+$application->add(new AddCommand($taskRepository));
+$application->add(new ListCommand($taskRepository));
+$application->add(new CheckCommand($taskRepository));
+$application->add(new RemoveCommand($taskRepository));
 
 $application->run();
