@@ -9,6 +9,7 @@ use App\Command\AddCommand;
 use App\Command\CheckCommand;
 use App\Command\ListCommand;
 use App\Command\RemoveCommand;
+use App\Command\UpdateCommand;
 use App\Database\DatabaseAdaptor;
 use App\Database\TaskRepository;
 use Symfony\Component\Console\Application;
@@ -42,5 +43,6 @@ $application->add(new AddCommand($taskRepository));
 $application->add(new ListCommand($taskRepository));
 $application->add(new CheckCommand($taskRepository));
 $application->add(new RemoveCommand($taskRepository));
+$application->add(new UpdateCommand($taskRepository));
 
 $application->run();
