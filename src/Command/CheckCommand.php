@@ -39,6 +39,7 @@ class CheckCommand extends Command
         if ($input->getOption('uncheck')) {
             $this->repository->uncheck($input->getArgument('task'));
             $output->writeln('<info>Task unchecked.</info>');
+            exit(0);
         }
 
         $this->repository->check($input->getArgument('task'));
