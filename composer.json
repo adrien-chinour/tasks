@@ -1,5 +1,5 @@
 {
-    "name": "adrien-chinour/todo-command-app",
+    "name": "chinour/task-manager",
     "description": "Simple Todo Command Line Application",
     "type": "library",
     "license": "MIT",
