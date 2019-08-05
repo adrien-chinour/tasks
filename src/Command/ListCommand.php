@@ -28,10 +28,9 @@ class ListCommand extends Command
     public function configure()
     {
         $this
-            ->setName('all')
-            ->setAliases(['ls'])
+            ->setName('ls')
             ->setDescription('List all tasks')
-            ->addOption('group', 'g', InputOption::VALUE_REQUIRED, 'Filter tasks list by group');
+            ->addOption('group', null, InputOption::VALUE_REQUIRED, 'Filter tasks list by group');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -39,7 +38,7 @@ class ListCommand extends Command
         $tasks = $this->repository->list($input->getOption('group'));
 
         if (empty($tasks)) {
-            $output->writeln('<info>no task found.</info>');
+            $output->writeln('<info>No task found.</info>');
             exit(0);
         }
 

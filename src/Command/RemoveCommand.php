@@ -30,7 +30,6 @@ class RemoveCommand extends Command
     {
         $this
             ->setName('remove')
-            ->setAliases(['rm'])
             ->setDescription('Remove task(s)')
             ->addArgument('task', InputArgument::IS_ARRAY, 'ID of task(s) to be removed');
     }
