@@ -15,7 +15,7 @@ cd todo-command-app
 composer install
 ```
 
-### From composer (global)
+### From composer
 ```
 composer require chinour/task-manager
 ```
