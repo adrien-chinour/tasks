@@ -1,5 +1,5 @@
 {
-    "name": "adrien/todo-command-app",
+    "name": "adrien-chinour/todo-command-app",
     "description": "Simple Todo Command Line Application",
     "type": "library",
     "license": "MIT",
@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": "7.2",
         "symfony/console": "4.4.x-dev",
         "ext-pdo": "*"
     },
