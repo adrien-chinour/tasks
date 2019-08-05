@@ -17,7 +17,7 @@ composer install
 
 ### From composer (global)
 ```
-composer require chinour/task-manager --global
+composer require chinour/task-manager
 ```
 
 ## Tests
