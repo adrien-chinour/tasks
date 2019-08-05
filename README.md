@@ -17,7 +17,7 @@ composer install
 
 ### From composer (global)
 ```
-composer require adrien/todo-command-app --global
+composer require chinour/task-manager --global
 ```
 
 ## Tests
