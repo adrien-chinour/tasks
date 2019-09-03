@@ -1,14 +1,19 @@
 <?php
 
-namespace Tests\Command;
+namespace Tests;
 
-use App\Command\AddCommand;
 use App\Database\TaskRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
+/**
+ * Class AbstractCommandTest
+ *
+ * @package Tests\Command
+ * @
+ */
 class AbstractCommandTest extends TestCase
 {
 

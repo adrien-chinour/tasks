@@ -3,6 +3,7 @@
 namespace Tests\Command;
 
 use App\Command\AddCommand;
+use Tests\AbstractCommandTest;
 
 class AddCommandTest extends AbstractCommandTest
 {
