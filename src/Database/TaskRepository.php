@@ -26,15 +26,15 @@ class TaskRepository
 
     /**
      * @param string $name
-     * @param string $group
+     * @param string $category
      *
      * @return array
      */
-    public function add(string $name, string $group = '')
+    public function add(string $name, string $category = null)
     {
         return $this->adaptor->query(
-            "insert into tasks('name','group','completed') values (:name, :group, :completed)",
-            [':name' => $name, ':group' => $group, ':completed' => 0]
+            "insert into tasks('name','category','completed') values (:name, :category, :completed)",
+            [':name' => $name, ':category' => $category, ':completed' => 0]
         );
     }
 
@@ -59,15 +59,15 @@ class TaskRepository
     }
 
     /**
-     * @param string|null $group
+     * @param string|null $category
      *
      * @return array
      */
-    public function list(string $group = null)
+    public function list(string $category = null)
     {
-        if ($group !== null) {
+        if ($category !== null) {
             return $this->adaptor
-                ->query('select * from tasks where "group" = :group', [':group' => $group]);
+                ->query('select * from tasks where category = :category', [':category' => $category]);
         }
 
         return $this->adaptor->query('select * from tasks', []);
@@ -97,14 +97,14 @@ class TaskRepository
 
     /**
      * @param int    $id
-     * @param string $group
+     * @param string $category
      *
      * @return array
      */
-    public function updateGroup(int $id, string $group)
+    public function updateCategory(int $id, string $category)
     {
         return $this->adaptor
-            ->query('update tasks set "group" = :group where id = :id', [':id' => $id, ':group', $group]);
+            ->query('update tasks set category = :category where id = :id', [':id' => $id, ':category', $category]);
     }
 
 }

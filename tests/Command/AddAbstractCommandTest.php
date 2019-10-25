@@ -18,11 +18,11 @@ class AddCommandTest extends AbstractCommandTest
     protected $commandClass = AddCommand::class;
 
     /**
-     * @dataProvider tasksWithoutGroupProvider
+     * @dataProvider tasksWithoutCategoryProvider
      *
      * @param $name : task name
      */
-    public function testExecuteWithNullGroup($name)
+    public function testExecuteWithNullCategory($name)
     {
         $this->taskRepositoryMock
             ->expects($this->once())
@@ -38,19 +38,19 @@ class AddCommandTest extends AbstractCommandTest
     }
 
     /**
-     * @dataProvider tasksWithGroupProvider
+     * @dataProvider tasksWithCategoryProvider
      *
      * @param $name  : task name
-     * @param $group : task group
+     * @param $category : task category
      */
-    public function testExecuteWithGroup($name, $group)
+    public function testExecuteWithCategory($name, $category)
     {
         $this->taskRepositoryMock
             ->expects($this->once())
             ->method('add')
-            ->with($name, $group);
+            ->with($name, $category);
 
-        $this->commandTester->execute(['name' => $name, '--group' => $group]);
+        $this->commandTester->execute(['name' => $name, '--category' => $category]);
 
         $this->assertEquals(
             'Task correctly added.',
@@ -64,7 +64,7 @@ class AddCommandTest extends AbstractCommandTest
      *
      * @return array
      */
-    public function tasksWithoutGroupProvider()
+    public function tasksWithoutCategoryProvider()
     {
         $tasks = [];
 
@@ -77,18 +77,18 @@ class AddCommandTest extends AbstractCommandTest
 
     /**
      * DataProvider
-     * return random tasks with a group
+     * return random tasks with a category
      *
      * @return array
      */
-    public function tasksWithGroupProvider()
+    public function tasksWithCategoryProvider()
     {
         $tasks = [];
 
         for ($i = 0; $i < self::NUMBER_OF_TASKS; $i++) {
             $name = uniqid() . "_$i";
-            $group = uniqid();
-            $tasks[] = [$name, $group];
+            $category = uniqid();
+            $tasks[] = [$name, $category];
         }
 
         return $tasks;

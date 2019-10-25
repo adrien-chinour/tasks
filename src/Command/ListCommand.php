@@ -30,12 +30,12 @@ class ListCommand extends Command
         $this
             ->setName('ls')
             ->setDescription('List all tasks')
-            ->addOption('group', null, InputOption::VALUE_REQUIRED, 'Filter tasks list by group');
+            ->addOption('category', null, InputOption::VALUE_REQUIRED, 'Filter tasks list by category');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $tasks = $this->repository->list($input->getOption('group'));
+        $tasks = $this->repository->list($input->getOption('category'));
 
         if (empty($tasks)) {
             $output->writeln('<info>No task found.</info>');
@@ -49,7 +49,7 @@ class ListCommand extends Command
     {
         $table = new Table($output);
         $table
-            ->setHeaders(['ID', 'Name', 'Group', 'Completed'])
+            ->setHeaders(['ID', 'Name', 'Category', 'Completed'])
             ->setRows($tasks);
 
         $table->render();

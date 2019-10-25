@@ -22,7 +22,7 @@ try {
     $table = null;
 
     if (!file_exists($sqlite)) {
-        $table = 'CREATE TABLE tasks(id INTEGER PRIMARY KEY NOT NULL, name TEXT, "group" TEXT, completed BOOLEAN)';
+        $table = 'CREATE TABLE tasks(id INTEGER PRIMARY KEY NOT NULL, name TEXT, category TEXT, completed BOOLEAN)';
     }
 
     $pdo = new PDO('sqlite:tasks.sqlite');

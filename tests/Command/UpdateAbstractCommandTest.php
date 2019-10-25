@@ -33,17 +33,17 @@ class UpdateAbstractCommandTest extends AbstractCommandTest
         );
     }
 
-    public function testUpdateTaskGroup()
+    public function testUpdateTaskCategory()
     {
         $id = 1;
-        $group = 'new group';
+        $category = 'new category';
 
         $this->taskRepositoryMock
             ->expects($this->once())
-            ->method('updateGroup')
-            ->with($id, $group);
+            ->method('updateCategory')
+            ->with($id, $category);
 
-        $this->commandTester->execute(['task' => $id, '--group' => $group]);
+        $this->commandTester->execute(['task' => $id, '--category' => $category]);
 
         $this->assertEquals(
             'Task updated.',
@@ -51,16 +51,16 @@ class UpdateAbstractCommandTest extends AbstractCommandTest
         );
     }
 
-    public function testUpdateTaskGroupAndName()
+    public function testUpdateTaskCategoryAndName()
     {
         $id = 1;
-        $group = 'new group';
+        $category = 'new category';
         $name = 'new name';
 
         $this->taskRepositoryMock
             ->expects($this->once())
-            ->method('updateGroup')
-            ->with($id, $group);
+            ->method('updateCategory')
+            ->with($id, $category);
 
         $this->taskRepositoryMock
             ->expects($this->once())
@@ -68,7 +68,7 @@ class UpdateAbstractCommandTest extends AbstractCommandTest
             ->with($id, $name);
 
         $this->commandTester->execute(
-            ['task' => $id, '--group' => $group, '--name' => $name]
+            ['task' => $id, '--category' => $category, '--name' => $name]
         );
 
         $this->assertEquals(

@@ -31,15 +31,15 @@ class AddCommand extends Command
             ->setName('add')
             ->setDescription('Add a new task')
             ->addArgument('name', InputArgument::REQUIRED, 'Name of the task to add')
-            ->addOption('group', null, InputOption::VALUE_REQUIRED, 'Add a group to your task', '');
+            ->addOption('category', null, InputOption::VALUE_REQUIRED, 'Add a category to your task', '');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getArgument('name');
-        $group = $input->getOption('group');
+        $category = $input->getOption('category');
 
-        $this->repository->add($name, $group);
+        $this->repository->add($name, $category);
         $output->writeln("<info>Task correctly added.</info>");
     }
 
