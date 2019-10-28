@@ -2,7 +2,7 @@
     "name": "chinour/task-manager",
     "description": "Simple Todo Command Line Application",
     "type": "library",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Adrien Chinour",
