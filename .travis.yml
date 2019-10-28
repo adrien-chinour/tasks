@@ -1,6 +1,12 @@
 language: php
 php:
-    - '7.3'
+- '7.3'
+
+addons:
+    sonarcloud:
+        organization: 'adrien-chinour'
+        token:
+            secure: SONAR_TOKEN
 
 before_script:
     - travis_retry composer self-update
@@ -8,3 +14,4 @@ before_script:
 
 script:
     - composer test
+    - sonar-scanner
