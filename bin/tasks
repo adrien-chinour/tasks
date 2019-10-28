@@ -16,16 +16,18 @@ use Symfony\Component\Console\Application;
 
 $application = new Application('Todo Commands Application', '1.0');
 
+const DATABASE = 'var/tasks.sqlite';
+
 // connection to database
 try {
-    $sqlite = __DIR__ . '/tasks.sqlite';
+    $sqlite = __DIR__ . DATABASE;
     $table = null;
 
     if (!file_exists($sqlite)) {
         $table = 'CREATE TABLE tasks(id INTEGER PRIMARY KEY NOT NULL, name TEXT, category TEXT, completed BOOLEAN)';
     }
 
-    $pdo = new PDO('sqlite:tasks.sqlite');
+    $pdo = new PDO('sqlite:' . DATABASE);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if ($table !== null) {

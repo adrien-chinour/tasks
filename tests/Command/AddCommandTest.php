@@ -3,9 +3,9 @@
 namespace Tests\Command;
 
 use App\Command\AddCommand;
-use Tests\AbstractCommandTest;
+use Tests\CommandTestCase;
 
-class AddCommandTest extends AbstractCommandTest
+class AddCommandTest extends CommandTestCase
 {
 
     /**

@@ -2,7 +2,7 @@
 
 ## Requirement
 
-- PHP 7.2
+- PHP 7.3
 - Extension PHP PDO
 - Composer
 
@@ -16,8 +16,16 @@ composer install
 ```
 
 ### From composer
-```
+```bash
 composer require chinour/task-manager
 ```
 
 ## Tests
+
+```bash
+# Run unit tests
+composer test
+
+# Run unit tests with code coverage
+composer coverage
+```

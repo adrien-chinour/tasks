@@ -5,9 +5,9 @@ namespace Tests\Command;
 
 
 use App\Command\UpdateCommand;
-use Tests\AbstractCommandTest;
+use Tests\CommandTestCase;
 
-class UpdateAbstractCommandTest extends AbstractCommandTest
+class UpdateCommandTest extends CommandTestCase
 {
     // TODO add test for interactive update
 

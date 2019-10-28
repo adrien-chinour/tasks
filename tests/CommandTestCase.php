@@ -8,13 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * Class AbstractCommandTest
- *
- * @package Tests\Command
- * @
- */
-class AbstractCommandTest extends TestCase
+class CommandTestCase extends TestCase
 {
 
     protected $commandName = null;
