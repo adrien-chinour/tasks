@@ -1,3 +1,5 @@
+![travisCI Build](https://travis-ci.org/adrien-chinour/todo-command-app.svg?branch=master)
+
 # Todo Command Line Application
 
 ## Requirement
