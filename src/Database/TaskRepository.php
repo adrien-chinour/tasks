@@ -104,7 +104,7 @@ class TaskRepository
     public function updateCategory(int $id, string $category)
     {
         return $this->adaptor
-            ->query('update tasks set category = :category where id = :id', [':id' => $id, ':category', $category]);
+            ->query('update tasks set category = :category where id = :id', [':id' => $id, ':category' => $category]);
     }
 
 }
