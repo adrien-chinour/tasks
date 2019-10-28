@@ -6,7 +6,7 @@ addons:
     sonarcloud:
         organization: 'adrien-chinour'
         token:
-            secure: SONAR_TOKEN
+            secure: RgOyhE5XNxqwnLJrll5dPuADXjinn0/E4GYCbueagehrk+lLfDMwCz3GnxYBqxY4KnI4lAk+5nWX9Wlikpoe2EI/nDzsJpgysezP6QfhiVY6mEbMzzs5xBrzMvn6Dd/k3QBlvK3GvKsoAw8mUozaVjr12XyQ/DVqMwzVNILhUCNL+4hVvVboDS9SfKe+nvp6R3chRRQqVkFZBFfZKcHn1dJNH1Bg6QQbBBz2yJNUJhNUy7Uw1gyjse73vqKnJ7N99nuxJTnEfcLCB1XlQjZ562VxD1+BP4f5cvHn1jsmvGJSzCFWb2Od29x9RF74yNX5ZM4vBEDN10+p5Op+ILxDf9usOxNi9NTF/C5Ya6bgPEsv+yUiJN4JISPJ31/cC2oqo9sfyXabaN5ifpjj0sOpxMaryhH7dLTdscDOH+3C17wQp+5x3yJkgyEHV3hpfbn6yRbeGqeclGYftZYui+Yy42b7YpZkZ2cjoDZWxtkDBxATgTleG6YWpLvroVafVAsD2X7pASKw8R8byJBp3dpNG3MwHdqib2oL7ZofN7us5J/p51RMw7Cqfkn44CPMUepFFjje1hf8K+N1US4pwFQLiAirV+NXvG6uXZe63S2LxEL9HMj7BG7WcaWDFHx1wx40bcopS3jpw0oQm38L22il0bsvphU8F6YSR1XJ9c/ePZE=
 
 before_script:
     - travis_retry composer self-update
